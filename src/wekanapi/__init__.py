@@ -1,5 +1,5 @@
 import requests
-from models import Board
+from .models import Board
 
 
 class WekanApi:
