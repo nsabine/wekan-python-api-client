@@ -31,7 +31,7 @@ class Swimlane:
         self.title = swimlane_data["title"]
 
     def get_cards(self, filter=''):
-        cards_data = self.api.api_call("/api/boards/{}/swimlands/{}/cards".format(self.board.id, self.id))
+        cards_data = self.api.api_call("/api/boards/{}/swimlanes/{}/cards".format(self.board.id, self.id))
         return [Card(self.api, self, card_data) for card_data in cards_data if filter in card_data]
 
     def pprint(self, indent=0):
