@@ -32,7 +32,7 @@ class Swimlane:
 
     def get_cards(self, filter=''):
         cards_data = self.api.api_call("/api/boards/{}/swimlanes/{}/cards".format(self.board.id, self.id))
-        return [Card(self.api, self, card_data) for card_data in cards_data if filter in card_data]
+        return [Card(self.api, self, card_data) for card_data in cards_data if filter in card_data["title"]
 
     def pprint(self, indent=0):
         pprint = "{}- {}".format("  " * indent, self.title)
