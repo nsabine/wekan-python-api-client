@@ -141,7 +141,7 @@ class Card:
             pdate = datetime.datetime.strptime(cardinfo["dueAt"], "%Y-%m-%dT%H:%M:%S.%fZ")
             pprint += "{}- Due at: {} <br />".format("&nbsp;" * (indent+1), pdate)
         for checklist in self.get_checklists():
-            pprint += "{} <br />".format(checklist.htmlprint(indent + 1))
+            pprint += checklist.htmlprint(indent + 1)
         return pprint
 
 
