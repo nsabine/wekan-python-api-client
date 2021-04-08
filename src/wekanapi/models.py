@@ -169,7 +169,7 @@ class Checklist:
     def htmlprint(self, indent=0):
         pprint = "{}- {} <br />".format("&nbsp;" * indent, self.title)
         for item in self.get_items():
-            pprint += "{} <br />".format(item.htmlprint(indent + 1))
+            pprint += item.htmlprint(indent + 1)
         return pprint
 
 
