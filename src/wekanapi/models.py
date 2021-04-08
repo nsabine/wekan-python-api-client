@@ -106,7 +106,7 @@ class Card:
         return [Checklist(self.api, self, checklist_data) for checklist_data in checklists_data]
 
     def pprint(self, indent=0):
-        pprint = "{}- {}".format("  " * indent, self.title)
+        pprint = "{}- {} https://{}".format("  " * indent, self.title, self.api.api_url)
         cardinfo = self.get_card_info()
         if "dueAt" in cardinfo:
             pdate = datetime.datetime.strptime(cardinfo["dueAt"], "%Y-%m-%dT%H:%M:%S.%fZ")
