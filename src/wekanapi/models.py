@@ -22,9 +22,9 @@ class Board:
         return pprint
 
     def htmlprint(self, indent=0):
-        pprint = "{}- {}".format("&nbsp;"*indent, self.title)
+        pprint = "{}- {} <br />".format("&nbsp;"*indent, self.title)
         for cardslist in self.get_cardslists():
-            pprint += "\n{}".format(cardslist.htmlprint(indent + 1))
+            pprint += "{}".format(cardslist.htmlprint(indent + 1))
         return pprint
 
 
@@ -47,9 +47,9 @@ class Swimlane:
         return pprint
 
     def htmlprint(self, indent=0):
-        pprint = "{}- {}".format("&nbsp;" * indent, self.title)
+        pprint = "{}- {} <br />".format("&nbsp;" * indent, self.title)
         for cards in self.get_cards():
-            pprint += "\n{}".format(cards.htmlprint(indent + 1))
+            pprint += "{}".format(cards.htmlprint(indent + 1))
         return pprint
 
 
@@ -72,9 +72,9 @@ class Cardslist:
         return pprint
 
     def htmlprint(self, indent=0):
-        pprint = "{}- {}".format("&nbsp;" * indent, self.title)
+        pprint = "{}- {} <br />".format("&nbsp;" * indent, self.title)
         for cards in self.get_cards():
-            pprint += "\n{}".format(cards.htmlprint(indent + 1))
+            pprint += "{}".format(cards.htmlprint(indent + 1))
         return pprint
 
     # default the swimlane to the first one in the list, if not specified
@@ -135,13 +135,13 @@ class Card:
 
     def htmlprint(self, indent=0):
         url = self.api.api_url + "/b/" + self.cardslist.board.id + "/" + self.cardslist.board.title + "/" + self.id
-        pprint = "{}- <a href='{}'>{}</a>".format("&nbsp;" * indent, url, self.title)
+        pprint = "{}- <a href='{}'>{}</a> <br />".format("&nbsp;" * indent, url, self.title)
         cardinfo = self.get_card_info()
         if "dueAt" in cardinfo:
             pdate = datetime.datetime.strptime(cardinfo["dueAt"], "%Y-%m-%dT%H:%M:%S.%fZ")
-            pprint += "\n{}- Due at: {}".format("&nbsp;" * (indent+1), pdate)
+            pprint += "{}- Due at: {} <br />".format("&nbsp;" * (indent+1), pdate)
         for checklist in self.get_checklists():
-            pprint += "\n{}".format(checklist.htmlprint(indent + 1))
+            pprint += "{} <br />".format(checklist.htmlprint(indent + 1))
         return pprint
 
 
@@ -167,9 +167,9 @@ class Checklist:
         return pprint
 
     def htmlprint(self, indent=0):
-        pprint = "{}- {}".format("&nbsp;" * indent, self.title)
+        pprint = "{}- {} <br />".format("&nbsp;" * indent, self.title)
         for item in self.get_items():
-            pprint += "\n{}".format(item.htmlprint(indent + 1))
+            pprint += "{} <br />".format(item.htmlprint(indent + 1))
         return pprint
 
 
@@ -186,5 +186,5 @@ class ChecklistItem:
         return pprint
 
     def htmlprint(self, indent=0):
-        pprint = "{}- [{}] {}".format("&nbsp;" * indent, "X" if self.is_finished else " ", self.title)
+        pprint = "{}- [{}] {} <br />".format("&nbsp;" * indent, "X" if self.is_finished else " ", self.title)
         return pprint
