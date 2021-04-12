@@ -16,7 +16,7 @@ class Board:
         sorted_cardslists = []
         for cardslist in cardslists:
           cardslist_details = cardslist.get_details()
-          sorted_cardslists[cardslist_details['sort']] = cardslist
+          sorted_cardslists.insert([cardslist_details['sort']], cardslist)
         return sort_cardslists
 
     def get_swimlanes(self, filter=''):
