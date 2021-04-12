@@ -60,6 +60,12 @@ class Cardslist:
         self.data = cardslist_data
         self.id = cardslist_data["_id"]
         self.title = cardslist_data["title"]
+        self.details = None
+
+    def get_details(self):
+        if self.details is None:
+          self.details = self.api.api_call("/api/boards/{}/lists/{}".format(self.board.id, self.id))
+        return self.details
 
     def get_cards(self, id=''):
         cards_data = self.api.api_call("/api/boards/{}/lists/{}/cards".format(self.board.id, self.id))
