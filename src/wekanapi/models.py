@@ -11,6 +11,13 @@ class Board:
         cardslists_data = self.api.api_call("/api/boards/{}/lists".format(self.id))
         return [Cardslist(self.api, self, cardslist_data) for cardslist_data in cardslists_data if filter in cardslist_data["title"]]
 
+    def get_cardslists_sorted(self, filter=''):
+        cardslists = self.get_cardslists(filter)
+        for cardslist in cardslists:
+          cardslist_details = cardslist.get_details()
+          sorted_cardslists[cardslist_details['sort']] = cardslist
+        return sort_cardslists
+
     def get_swimlanes(self, filter=''):
         swimlanes_data = self.api.api_call("/api/boards/{}/swimlanes".format(self.id))
         return [Swimlane(self.api, self, swimlane_data) for swimlane_data in swimlanes_data if filter in swimlane_data["title"]]
@@ -24,6 +31,7 @@ class Board:
     def htmlprint(self, indent=0):
         pprint = "{}- {} <br />".format("&nbsp;"*indent, self.title)
         for cardslist in self.get_cardslists():
+            cardslist.get_details()
             pprint += "{}".format(cardslist.htmlprint(indent + 1))
         return pprint
 
