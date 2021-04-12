@@ -13,6 +13,7 @@ class Board:
 
     def get_cardslists_sorted(self, filter=''):
         cardslists = self.get_cardslists(filter)
+        sorted_cardslists = []
         for cardslist in cardslists:
           cardslist_details = cardslist.get_details()
           sorted_cardslists[cardslist_details['sort']] = cardslist
