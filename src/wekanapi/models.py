@@ -31,7 +31,7 @@ class Board:
 
     def htmlprint(self, indent=0):
         pprint = "{}- {} <br />".format("&nbsp;"*indent, self.title)
-        for cardslist in self.get_cardslists_sorted():
+        for cardslist in self.get_cardslists():
             pprint += "{}".format(cardslist.htmlprint(indent + 1))
         return pprint
 
